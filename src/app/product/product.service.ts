@@ -27,7 +27,7 @@ export class ProductService {
   create(product: Product): Observable<Product> {
     return this.httpClient
       .post<Product>(
-        this.apiURL + '/products/',
+        `${this.apiURL}/product`,
         JSON.stringify(product),
         this.httpOptions
       )
@@ -36,14 +36,14 @@ export class ProductService {
 
   find(id: number): Observable<Product> {
     return this.httpClient
-      .get<Product>(this.apiURL + '/products/' + id)
+      .get<Product>(`${this.apiURL}/product?id=${id}`)
       .pipe(catchError(this.errorHandler));
   }
 
   update(id: number, product: Product): Observable<Product> {
     return this.httpClient
       .put<Product>(
-        this.apiURL + '/products/' + id,
+        `${this.apiURL}/product?id=${id}`,
         JSON.stringify(product),
         this.httpOptions
       )
@@ -52,7 +52,7 @@ export class ProductService {
 
   delete(id: number): Observable<any> {
     return this.httpClient
-      .delete(this.apiURL + '/products/' + id, this.httpOptions)
+      .delete(`${this.apiURL}/product?id=${id}`, this.httpOptions)
       .pipe(catchError(this.errorHandler));
   }
 

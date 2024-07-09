@@ -1,0 +1,65 @@
+<div class="container">
+  <h1>Update Product</h1>
+
+  <a href="#" routerLink="/products" class="btn btn-primary">Back</a>
+
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        formControlName="name"
+        id="name"
+        type="text"
+        class="form-control"
+      />
+      <div
+        *ngIf="fc['name'].touched && fc['name'].invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="fc['name'].errors && fc['name'].errors['required']">
+          Name is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input
+        formControlName="price"
+        id="price"
+        type="text"
+        class="form-control"
+      />
+      <div
+        *ngIf="fc['price'].touched && fc['price'].invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="fc['price'].errors && fc['price'].errors['required']">
+          Price is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input
+        formControlName="quantity"
+        id="quantity"
+        type="text"
+        class="form-control"
+      />
+      <div
+        *ngIf="fc['quantity'].touched && fc['quantity'].invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="fc['quantity'].errors && fc['quantity'].errors['required']">
+          Quantity is required.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit" [disabled]="!form.valid">
+      Update
+    </button>
+  </form>
+</div>
